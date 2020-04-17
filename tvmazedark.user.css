@@ -1,14 +1,14 @@
 /* ==UserStyle==
 @name           TV Maze Dark's Fork
+@updateurl    https://github.com/we555/tvmazedark/raw/master/tvmazedark.user.css
 
-@version      1.0
+@version      1.0.1
 @author       srob650
 @homepage     https://userstyles.org/styles/118970
-@description  Original themeis done by srob650. Homepage link directs to original them
+@description  Original themeis done by srob650. Homepage link directs to original theme.
 @namespace    github.com/openstyles/stylus
 
-
-@advanced color base-color "Color" "hsl(59, 100%, 14%)" 
+@advanced color watched-color "Watched shows color" "hsl(184, 32%, 19%)" 
 @advanced dropdown foo "Bar" {
   Inverted "Inverted" <<<EOT
   invert EOT;
@@ -20,6 +20,13 @@
 
 @-moz-document domain('www.tvmaze.com')
 {
+  :root {
+    --color-calendar-entry-wathced: /*[[watched-color]]*/;
+    --calendar_entry_hover_bkg: #111e;
+    --calendar_entry:          #92d8d1;
+    --entry_toggle_icon_hover: #92d8d1;
+    --breadcrumbs-elems: #9C9C9C;
+  }
   body
   {
     background: #333333  !important;
@@ -50,18 +57,18 @@
 
   .breadcrumbs a
   {
-    color: #9C9C9C;
+    color: var(--breadcrumbs-elems);
   }
 
   .breadcrumbs>*.current
   {
     cursor: default;
-    color: #9C9C9C;
+    color: var(--breadcrumbs-elems);
   }
 
   #forum #forum-section .description
   {
-    color: #9C9C9C;
+    color: var(--breadcrumbs-elems);
   }
 
   #forum #thread .comment.primary
@@ -435,13 +442,51 @@
     color: #808997;
   }
 
-  .calendar .entry .airtime
+  
+  
+  
+  /* Calendar entries
+  */
+  .calendar .entry {
+    padding-top: 4px;
+    padding-bottom: 16px;
+    border: unset;
+  }
+  .calendar .entry .airtime {
+    display: none;
+  }
+  .calendar .entry:hover .airtime
   {
     font-weight: normal;
-    font-size: 11px;
     line-height: 1.2em;
-    color: #92d8d1;
+    color: var(--calendar_entry, #92d8d1);
+    
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    background-color: var(--calendar_entry_hover_bkg, #000d);
   }
+  /* Watched buttons pop-up panel
+  */
+  #calendar-wrap .entry .toggle-icon.fa {
+    margin-top: 2px;
+  }
+  #calendar-wrap .entry .toggle-icon.fa:hover {
+    color: var(--entry_toggle_icon_hover, white);
+  }
+  .tributton-watch.grid-x.active-tributton {
+    z-index: 12;
+    position: sticky;
+  }
+  
+  
+  
 
   .episodeguide article
   {
@@ -534,7 +579,7 @@
   #calendar-wrap .entry.watched
   {
     border-left: 3px solid #43AC6A;
-    background-color: #043e1a;
+    background-color: var(--color-calendar-entry-wathced);
   }
 
   #calendar .day .show>div, #countdown .day .show>div
