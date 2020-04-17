@@ -2,9 +2,9 @@
 @name           TV Maze Dark's Fork
 @updateurl    https://github.com/we555/tvmazedark/raw/master/tvmazedark.user.css
 
-@version      1.0.1
+@version      1.0.2
 @author       srob650
-@homepage     https://userstyles.org/styles/118970
+@homepageURL     https://userstyles.org/styles/118970
 @description  Original themeis done by srob650. Homepage link directs to original theme.
 @namespace    github.com/openstyles/stylus
 
@@ -23,7 +23,7 @@
   :root {
     --color-calendar-entry-wathced: /*[[watched-color]]*/;
     --calendar_entry_hover_bkg: #111e;
-    --calendar_entry:          #92d8d1;
+    --calendar_airtime: #b2e9e3;
     --entry_toggle_icon_hover: #92d8d1;
     --breadcrumbs-elems: #9C9C9C;
   }
@@ -88,7 +88,6 @@
   {
     font-size: 0.9em;
     padding: 5px;
-    display: inline-block;
     border-bottom: 1px dotted #3C948B;
     display: block;
     margin-bottom: 5px;
@@ -377,7 +376,7 @@
 
   .day.today, .days.today
   {
-    background: #4E4D4D;
+    background: #3F3F3F !important;
   }
 
   .calendar .entry:hover
@@ -449,28 +448,45 @@
   */
   .calendar .entry {
     padding-top: 4px;
-    padding-bottom: 16px;
-    border: unset;
+    padding-bottom: 18px;
+    border-color: #0000;
+    border-bottom-style: solid;
+  }
+  .calendar .entry:hover {
+    border-color: #fff2;
+    background-color: #484848;
+  }
+  .calendar .entry a:hover, .calendar .entry a:focus {
+    text-decoration: none;
+    color: var(--calendar_airtime);
+/*     color: unset; */
   }
   .calendar .entry .airtime {
-    display: none;
-  }
-  .calendar .entry:hover .airtime
-  {
-    font-weight: normal;
-    line-height: 1.2em;
-    color: var(--calendar_entry, #92d8d1);
-    
+/*     display: none; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
-    top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 14px;
-    background-color: var(--calendar_entry_hover_bkg, #000d);
+    padding-bottom: 2px;
+    color: #0000;
+    font-weight: normal;
+    line-height: 1.2em;
+    font-size: 11px;
+/*     transition: color .51s; */
+/*     transition-delay: .21s; */
+/*     transition-property: color; */
+/*     transition-duration: 13s; */
+  }
+  .calendar .entry:hover .airtime
+  {
+    color: var(--calendar_airtime, #92d8d1);
+/*     transition: color .1s; */
+/*     transition-delay: 0s; */
+/*     transition-property: color; */
+/*     transition-duration: 0s; */
   }
   /* Watched buttons pop-up panel
   */
@@ -500,7 +516,6 @@
 
   .episodeguide .info
   {
-    font-size: 0.9em;
     background-color: #333333;
     padding: 0px 10px;
     margin-bottom: 10px;
@@ -626,7 +641,6 @@
 
   .callout
   {
-    border: none;
     background-color: #585858;
     webkit-box-shadow: 0 1px 5px 0 rgba(0,0,0,0.15);
     -mox-box-shadow: 0 1px 5px 0 rgba(0,0,0,0.15);
